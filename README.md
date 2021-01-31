@@ -16,7 +16,7 @@ This is my solution for Concord Bank [test task](TASK.md) – a simple REST serv
   RESPONSE BODY EXAMPLE:
   ```
   {
-    "fio_encr": "edAuIOGu9ibwrHvtZ/+fYw=="
+      "fio_encr": "edAuIOGu9ibwrHvtZ/+fYw=="
   }
   ```
 
@@ -32,7 +32,7 @@ This is my solution for Concord Bank [test task](TASK.md) – a simple REST serv
   RESPONSE BODY EXAMPLE:
   ```
   {
-    "fio": "Test Testov"
+      "fio": "Test Testov"
   }
   ```
   
