@@ -2,34 +2,34 @@
 [![Build Status](https://travis-ci.com/vztot/husenko-concord-bank-test-task.svg?branch=master)](https://travis-ci.com/vztot/husenko-concord-bank-test-task)
 
 ## Project purpose
-This is my solution for Concord Bank [test task](TASK.md). a simple REST service with AES-256 encryption part and two endpoints:
+This is my solution for Concord Bank [test task](TASK.md) – a simple REST service with AES-256 encryption part and two endpoints:
 
-* JSON POST-request to "/encode"
+* JSON POST-request to `/encode`
 
-  REQUEST EXAMPLE:
+  REQUEST BODY EXAMPLE:
   ```
   {
       "id": 1
   }
   ```
 
-  RESPONSE EXAMPLE:
+  RESPONSE BODY EXAMPLE:
   ```
   {
     "fio_encr": "edAuIOGu9ibwrHvtZ/+fYw=="
   }
   ```
 
-* JSON POST-request to "/decode"
+* JSON POST-request to `/decode`
 
-  REQUEST EXAMPLE:
+  REQUEST BODY EXAMPLE:
   ```
   {
       "fio_encr": "edAuIOGu9ibwrHvtZ/+fYw=="
   }
   ```
 
-  RESPONSE EXAMPLE:
+  RESPONSE BODY EXAMPLE:
   ```
   {
     "fio": "Test Testov"
