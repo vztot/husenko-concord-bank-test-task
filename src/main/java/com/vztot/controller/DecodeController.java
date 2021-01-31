@@ -5,18 +5,12 @@ import com.vztot.model.dto.DecodeResponseDto;
 import com.vztot.model.mapper.DecodeMapper;
 import com.vztot.service.CryptoService;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 @RequestMapping("/decode")
 @RestController
@@ -26,9 +20,8 @@ public class DecodeController {
     private final DecodeMapper mapper;
 
     @PostMapping
-    private DecodeResponseDto handlePost(@RequestBody DecodeRequestDto request) throws BadPaddingException,
-            InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException,
-            NoSuchPaddingException, InvalidKeyException {
+    @SneakyThrows
+    private DecodeResponseDto handlePost(@RequestBody DecodeRequestDto request) {
         return mapper.buildResponseDto(cryptoService.decrypt(request.getFioEncrypted()));
     }
 

@@ -6,18 +6,12 @@ import com.vztot.model.mapper.EncodeMapper;
 import com.vztot.service.CryptoService;
 import com.vztot.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 @RequestMapping("/encode")
 @RestController
@@ -28,9 +22,8 @@ public class EncodeController {
     private final EncodeMapper mapper;
 
     @PostMapping
-    private EncodeResponseDto handlePost(@RequestBody EncodeRequestDto request) throws BadPaddingException,
-            InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException,
-            NoSuchPaddingException, InvalidKeyException {
+    @SneakyThrows
+    private EncodeResponseDto handlePost(@RequestBody EncodeRequestDto request) {
         return mapper.buildResponseDto(cryptoService.encrypt(userService.getUserFioById(request.getId())));
     }
 
