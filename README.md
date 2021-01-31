@@ -1,55 +1,63 @@
-# huseno-concord-bank-test-task
+# huseno-concord-bank-test-task 
+[![Build Status](https://travis-ci.com/vztot/husenko-concord-bank-test-task.svg?branch=master)](https://travis-ci.com/vztot/husenko-concord-bank-test-task)
 
 ## Project purpose
-This is a simple REST service with two endpoints:
+This is my solution for Concord Bank [test task](TASK.md). a simple REST service with AES-256 encryption part and two endpoints:
 
-* POST-request to "/endpoint"
+* JSON POST-request to "/encode"
 
+  REQUEST EXAMPLE:
+  ```
+  {
+      "id": 1
+  }
+  ```
 
-You can register and login. While authenticated you can use several user services.
-Also, there are specific controllers to manage data available only for admin.
+  RESPONSE EXAMPLE:
+  ```
+  {
+    "fio_encr": "edAuIOGu9ibwrHvtZ/+fYw=="
+  }
+  ```
 
-User can complete order and add tickets to shopping cart.
-Admin can add new movies, movie sessions and cinema halls.
+* JSON POST-request to "/decode"
 
+  REQUEST EXAMPLE:
+  ```
+  {
+      "fio_encr": "edAuIOGu9ibwrHvtZ/+fYw=="
+  }
+  ```
+
+  RESPONSE EXAMPLE:
+  ```
+  {
+    "fio": "Test Testov"
+  }
+  ```
+  
 ## Project Structure
-* Java 11
-* Maven
-* Hibernate
-* Spring
-* Spring Security
-* Maven checkstyle plugin
-* Lombok
+* Java 11.
+* Maven.
+* H2  (in memory database).
+* Spring Boot.
+* Lombok.
+* Log4j2.
+* Travis CI.
 
 ## For developer
 
 1. Open the project in your IDE.
 
-2. Add Java SDK 11 or above.
+2. Use Java SDK 11 or above.
 
-3. Configure Tomcat:
-   * add the artifact cinema-project:war;
-   * configure root URL to http://localhost:8080/
+3. Build `rest-service.war` with maven.
 
-4. MySQL
-   * install MySQL server
-   * configure db.properties
-   * connect to MySQL server
-   * execute ``CREATE SCHEMA `cinema` DEFAULT CHARACTER SET utf8"``
+4. Add the artifact to Tomcat.
 
-5. Run the project.
+5. For testing download Postman or analogue.
 
-6. For testing download Postman or analogue.
-
-7. For authorization, you must add a new header, where Authorization is key and Basic email
-:password is value, where email:password must be encoded to Base64 format.
-
-There are test data that you can use.
-There’s already registered USER and ADMIN:
- * `email = "admin@gmail.com", password = "1111"`
- * `email = "user@gmail.com", password = "2222"`
- 
-You can change these test data in InjectDataController.
+You can find log file in `$TOMCAT_HOME\logs\husenko-rest-service.log`.
 
 ## Author
 
